@@ -32,16 +32,18 @@ http://docs.google.com
 ##Initial User stories
 **********************************************
 
-As an Admin I want to be able to create, edit and delete users
-As an Admin I want to be able to delete customers that have disconnected service
+As an Admin I want to be able to create, edit and delete customers
+As an Admin I want to be able to create, edit and delete agents
+As an Admin I want to be able to search customers and sales agents
 
-As a Sales agent I want to search for PDFs by customer name, address or account number.
+
+As a Sales agent I want to be able to search customers by name, account or division
 As a Sales agent I want to be able to review PDFs from customers
 As a Sales agent I want to be able to create notes/reminders to contact customer
 As a Sales agent I want to be able to generate an email to the customer
-As a Sales agent I want to add an Account number to a customer profile.
 
-As a customer I want to be able to register and log into the website
+
+As a customer I would like to be able to login the website
 As a customer I would like to edit my profile with Name, address and phone number.
 As a customer I want to be able to sign and upload PDFs for my account
 

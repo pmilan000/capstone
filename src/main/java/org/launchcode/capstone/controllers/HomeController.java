@@ -1,4 +1,4 @@
-package org.launchcode.capstone;
+package org.launchcode.capstone.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,7 +9,7 @@ public class HomeController {
 
     @RequestMapping("")
     public String index(Model model) {
-        model.addAttribute("title", "PDF Manager" );
+        model.addAttribute("title", "Comcast Business Depot" );
         return "index";
     }
 

@@ -2,13 +2,12 @@
 <html xmlns:th="http://www.thymeleaf.org/">
 
 <head th:fragment="head">
-
     <!-- Bootstrap stylesheets and script -->
-    <link th:href="@{/css/bootstrap.css}" rel="stylesheet" />
-    <link th:href="@{/css/capstone.css}" rel="stylesheet" />
-    <script type="text/javascript" th:src="@{/js/bootstrap.js}"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="@{/css/capstone.css}" rel="stylesheet" />
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 
-    <title th:text="'Capstone' + ${title == null ? '' : ' :: ' + title}">PDF Manager</title>
+    <title th:text="'Capstone' + ${title == null ? '' : ' :: ' + title}">Comcast Business Depot</title>
 </head>
 
 <body>
@@ -16,17 +15,16 @@
 <div th:fragment="page-header" class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
-            <a th:href="@{/}" class="navbar-brand">PDF Manager</a>
+            <a th:href="@{/}" class="navbar-brand">Comcast Business Depot</a>
         </div>
         <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <li><a th:href="@{/list}">List</a></li>
-                <li><a th:href="@{/search}">Search</a></li>
-                <li><a th:href="@{/add}">Login</a></li>
+            <ul class="navbar-nav ml-auto">
+                <li><a th:href="@{/admin}">Admin</a></li>
+                <li><a th:href="@{/agent}">Agent</a></li>
+                <li><a th:href="@{/customer}">Customer</a></li>
             </ul>
         </div>
     </div>
 </div>
-
 </body>
 </html>

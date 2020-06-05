@@ -1,14 +1,22 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org/">
-<head th:replace="fragments :: head">
-</head>
-<body>
+<head th:replace="fragments :: head"></head>
+<body class="container">
 
-<div th:replace="fragments :: page-header"></div>
+<div id="app" class="container">
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
+        <a class="navbar-brand" href="#">Comcast Business Depot</a>
 
-<div class="container body-content">
-
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="@{/admin}">Admin</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="@{/agent}">Agent</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="@{/customer}">Customer</a>
+                </li>
+            </ul>
+    </nav>
 </div>
-
-</body>
-</html>
