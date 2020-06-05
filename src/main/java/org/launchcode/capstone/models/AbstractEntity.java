@@ -5,20 +5,31 @@ import javax.persistence.MappedSuperclass;
 import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.util.Objects;
 
-
+@MappedSuperclass
 public abstract class AbstractEntity {
 
     @Id
     @GeneratedValue
     private int id;
 
-    @NotBlank(message="Required field")
-    @Size(min=3, max=75, message="Must be between 3 and 75 characters")
-    private String firstName;
+    public int getId() {
+        return id;
+    }
 
-    @NotBlank(message="Required field")
-    @Size(min=3, max=75, message="Must be between 3 and 75 characters")
-    private String lastName;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        AbstractEntity that = (AbstractEntity) o;
+        return id == that.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
+
 
 }
