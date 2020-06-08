@@ -17,4 +17,5 @@ nav,
 section,
 summary {
   display: inline-block;
+  wdith:100%;
 }

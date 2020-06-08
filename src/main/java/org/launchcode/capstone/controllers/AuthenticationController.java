@@ -44,21 +44,21 @@ public class AuthenticationController {
         session.setAttribute(userSessionKey, user.getId());
     }
 
-    @GetMapping("register")
+    @GetMapping("admin")
     public String displayRegistrationForm(Model model) {
         model.addAttribute(new RegisterFormDTO());
         model.addAttribute("title", "Register");
-        return "register";
+        return "admin";
     }
 
-    @PostMapping("register")
+    @PostMapping("admin")
     public String processRegistrationForm(@ModelAttribute @Valid RegisterFormDTO registerFormDTO,
                                           Errors errors, HttpServletRequest request,
                                           Model model) {
 
         if (errors.hasErrors()) {
             model.addAttribute("title", "Register");
-            return "register";
+            return "admin";
         }
 
         User existingUser = userRepository.findByUsername(registerFormDTO.getUsername());
@@ -66,7 +66,7 @@ public class AuthenticationController {
         if (existingUser != null) {
             errors.rejectValue("username", "username.alreadyexists", "A user with that username already exists");
             model.addAttribute("title", "Register");
-            return "register";
+            return "admin";
         }
 
         String password = registerFormDTO.getPassword();
@@ -74,7 +74,7 @@ public class AuthenticationController {
         if (!password.equals(verifyPassword)) {
             errors.rejectValue("password", "passwords.mismatch", "Passwords do not match");
             model.addAttribute("title", "Register");
-            return "register";
+            return "admin";
         }
 
         User newUser = new User(registerFormDTO.getUsername(), registerFormDTO.getPassword());
@@ -84,20 +84,20 @@ public class AuthenticationController {
         return "redirect:";
     }
 
-    @GetMapping("/login")
+    @GetMapping("login")
     public String displayLoginForm(Model model) {
         model.addAttribute(new LoginFormDTO());
-        model.addAttribute("title", "Log In");
+        model.addAttribute("title", "Comcast Business: New Customer Depot");
         return "login";
     }
 
-    @PostMapping("/login")
+    @PostMapping("login")
     public String processLoginForm(@ModelAttribute @Valid LoginFormDTO loginFormDTO,
                                    Errors errors, HttpServletRequest request,
                                    Model model) {
 
         if (errors.hasErrors()) {
-            model.addAttribute("title", "Log In");
+            model.addAttribute("title", "Comcast Business: New Customer Depot");
             return "login";
         }
 
@@ -105,7 +105,7 @@ public class AuthenticationController {
 
         if (theUser == null) {
             errors.rejectValue("username", "user.invalid", "The given username does not exist");
-            model.addAttribute("title", "Log In");
+            model.addAttribute("title", "Comcast Business: New Customer Depot");
             return "login";
         }
 
@@ -113,7 +113,7 @@ public class AuthenticationController {
 
         if (!theUser.isMatchingPassword(password)) {
             errors.rejectValue("password", "password.invalid", "Invalid password");
-            model.addAttribute("title", "Log In");
+            model.addAttribute("title", "Comcast Business: New Customer Depot");
             return "login";
         }
 
@@ -125,6 +125,6 @@ public class AuthenticationController {
     @GetMapping("/logout")
     public String logout(HttpServletRequest request){
         request.getSession().invalidate();
-        return "redirect:/login";
+        return "redirect:/index";
     }
 }

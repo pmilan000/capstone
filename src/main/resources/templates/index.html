@@ -5,12 +5,20 @@
 
 <div id="app" class="container">
     <nav class="navbar navbar-expand-md navbar-light bg-light">
-        <a class="navbar-brand" href="#">Comcast Business Depot</a>
+        <a class="navbar-brand" href="#">Comcast Business: New Customer Depot</a>
 
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="@{/login}">User Login</a>
-                </li>
+                <th:block th:if="${isloggedIn}">
+                    <a class="nav-link" href="#" th:text="${username}"></a>
+                    <a class="nav-link" href="logout" th:text="${username}"></a>
+                </th:block>
+                <th:block th:unless="${isloggedIn}">
+                    <a class="nav-link" href="\login">User Login</a>
+                </th:block>
             </ul>
     </nav>
 </div>
+
+<h1 text-align="center">Welcome to the Comcast Business Depot</h1>
+
+<img th:src="@{/css/comcast.jpg}" alt="Comcast Business" width="1000px" height="400px">
