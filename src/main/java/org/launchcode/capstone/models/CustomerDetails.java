@@ -1,4 +1,4 @@
 package org.launchcode.capstone.models;
 
-public class Admin {
+public class CustomerDetails {
 }
