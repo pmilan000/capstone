@@ -19,8 +19,7 @@
         <ul class="navbar-nav ml-auto">
             <th:block th:if="${isloggedIn}">
                 <a class="nav-link" href="#" th:text="${username}"></a>
-                <a class="nav-link" href="profile" th:text="Profile"></a>
-                <a class="nav-link" href="\login" th:text="LogOut"></a>
+                <a class="nav-link" href="logout" th:text="${username}"></a>
             </th:block>
             <th:block th:unless="${isloggedIn}">
                 <a class="nav-link" href="\login">User Login</a>

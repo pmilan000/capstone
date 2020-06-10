@@ -22,15 +22,15 @@ public class CustomerController {
     private UserRepository userRepository;
 
     @GetMapping("/customer")
-    public String displayCustomer(@RequestParam(required = false) Integer categoryId, Model model) {
+    public String displayCustomer(@RequestParam(required = false) Integer customerId, Model model) {
 
-        if (categoryId == null) {
+        if (customerId == null) {
             model.addAttribute("title", "Customer");
             model.addAttribute("customer", customerRepository.findAll());
         } else {
-            Optional<Customer> result = customerRepository.findById(categoryId);
+            Optional<Customer> result = customerRepository.findById(customerId);
             if (result.isEmpty()) {
-                model.addAttribute("title", "Invalid Category ID: " + categoryId);
+                model.addAttribute("title", "Invalid Customer ID: " + customerId);
             } else {
                 Customer customer = result.get();
                 model.addAttribute("title", "Profiles: " + customer.getFirstName());

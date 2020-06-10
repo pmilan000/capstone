@@ -23,8 +23,16 @@ public class AuthenticationFilter extends HandlerInterceptorAdapter {
 
     //private static final List<String> adminWhiteList = Arrays.asList("/index", "/login", "/search", "/logout", "/css","/register");
     //private static final List<String> agentWhiteList = Arrays.asList("/index", "/login", "/agentsearch", "/logout", "/css", "/register");
-    private static final List<String> customerWhiteList = Arrays.asList("/", "/login", "/customer", "/logout", "/css", "/register");
+    private static final List<String> whiteList = Arrays.asList("/", "/login", "/customer", "/logout", "/css", "/register");
 
+    private static boolean isWhiteListed(String path) {
+        for(String pathRoot : whiteList) {
+            if (path.startsWith(pathRoot)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
     @Override
     public boolean preHandle(HttpServletRequest request,
@@ -46,12 +54,4 @@ public class AuthenticationFilter extends HandlerInterceptorAdapter {
         return false;
     }
 
-    private static boolean isWhiteListed(String path) {
-        for(String pathRoot : customerWhiteList) {
-            if (path.startsWith(pathRoot)) {
-                return true;
-            }
-        }
-        return false;
-    }
 }
