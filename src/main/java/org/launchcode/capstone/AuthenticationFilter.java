@@ -23,7 +23,7 @@ public class AuthenticationFilter extends HandlerInterceptorAdapter {
 
     //private static final List<String> adminWhiteList = Arrays.asList("/index", "/login", "/search", "/logout", "/css","/register");
     //private static final List<String> agentWhiteList = Arrays.asList("/index", "/login", "/agentsearch", "/logout", "/css", "/register");
-    private static final List<String> whiteList = Arrays.asList("/", "/login", "/customer", "/logout", "/css", "/register");
+    private static final List<String> whiteList = Arrays.asList("/", "/customer", "/logout", "/css", "/register", "/login");
 
     private static boolean isWhiteListed(String path) {
         for(String pathRoot : whiteList) {
@@ -50,7 +50,7 @@ public class AuthenticationFilter extends HandlerInterceptorAdapter {
             return true;
         }
 
-        response.sendRedirect("");
+        response.sendRedirect("/login");
         return false;
     }
 

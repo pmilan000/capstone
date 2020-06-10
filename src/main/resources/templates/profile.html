@@ -1,33 +1,36 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org/">
-
-<head th:fragment="head">
-    <!-- Bootstrap stylesheets and script -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="@{/css/capstone.css}" rel="stylesheet" />
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-
-    <title th:text="'Capstone' + ${title == null ? '' : ' :: ' + title}">Comcast Business Depot</title>
+<head th:replace="fragments :: head">
 </head>
-
-<body>
-
-<div th:fragment="page-header" id="app" class="container-fullwidth">
-    <nav class="navbar navbar-expand-md navbar-dark bg-primary">
-        <a class="navbar-brand" href="#">Comcast Business: New Customer Depot</a>
-
-        <ul class="navbar-nav ml-auto">
-            <th:block th:if="${isloggedIn}">
-                <a class="nav-link" href="#" th:text="${username}"></a>
-                <a class="nav-link" href="logout" th:text="${username}"></a>
-            </th:block>
-            <th:block th:unless="${isloggedIn}">
-                <a class="nav-link" href="\login">User Login</a>
-                <a style="font-size:12px;" class="nav-link" href="#">Help</a>
-                <a style="font-size:12px;" class="nav-link" href="#">Version 1.0</a>
-            </th:block>
-        </ul>
-    </nav>
+<body class="container">
+<div th:replace="fragments :: page-header">
 </div>
+
+<br>
+<div>
+</div>
+
+<h1>CUSTOMER DETAILS</h1>
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Service Address</th>
+        <th>Contact phone</th>
+        <th>Email</th>
+    </tr>
+    </thead>
+    <tr th:each="customer : ${customers}">
+        <td th:text="${customer.id}"></td>
+        <td th:text="${customer.firstName}"></td>
+        <td th:text="${customer.customerDetails.serviceAddress}"></td>
+        <td th:text="${customer.customerDetails.phone}"></td>
+        <td th:text="${customer.customerDetails.email}"></td>
+    </tr>
+</table>
+
+
 </body>
 </html>

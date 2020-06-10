@@ -16,10 +16,6 @@ public class LoginFormDTO {
     @Size(min = 5, max = 20, message = "Invalid password. Must be between 5 and 30 characters.")
     private String password;
 
-    @NotNull
-    @NotBlank
-    private String role;
-
     public String getUsername() {
         return username;
     }
@@ -36,10 +32,4 @@ public class LoginFormDTO {
         this.password = password;
     }
 
-    public String getRole() {
-        return role;
-    }
-    public void setRole(String role) {
-        this.role = role;
-    }
 }
