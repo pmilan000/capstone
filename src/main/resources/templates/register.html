@@ -3,7 +3,26 @@
 <head th:replace="fragments :: head"></head>
 <body class="container">
 
-<header th:replace="fragments :: page-header"></header>
+
+<div th:fragment="page-header" id="app" class="container-fullwidth">
+    <nav class="navbar navbar-expand-md navbar-dark bg-primary">
+        <a class="navbar-brand" href="#">Comcast Business: New Customer Depot</a>
+
+        <ul class="navbar-nav ml-auto">
+            <th:block th:if="${isloggedIn}">
+                <a class="nav-link" href="#" th:text="${username}"></a>
+                <a class="nav-link" href="\profile" th:text="Profile"></a>
+                <a class="nav-link" href="\login" th:text="LogOut"></a>
+                <a class="nav-link" href="\register" th:text="Register"></a>
+            </th:block>
+            <th:block th:unless="${isloggedIn}">
+                <a class="nav-link" href="\login">User Login</a>
+                <a style="font-size:12px;" class="nav-link" href="#">Help</a>
+                <a style="font-size:12px;" class="nav-link" href="#">Version 1.0</a>
+            </th:block>
+        </ul>
+    </nav>
+</div>
 
 <form method="post">
     <div class="form-group">

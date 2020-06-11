@@ -14,7 +14,6 @@ public class User extends AbstractEntity {
     @NotNull
     private String pwHash;
 
-    @NotNull
     private String role;
 
     private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();

@@ -16,7 +16,7 @@ public class HomeController {
     @Autowired
     AuthenticationController authenticationController;
 
-    @GetMapping("")
+    @GetMapping("/home")
     public String index(HttpServletRequest request, Model model) {
 
         HttpSession session = request.getSession();
@@ -27,7 +27,7 @@ public class HomeController {
         if(user != null) {
             model.addAttribute("username", user.getUsername());
         }
-        return "index";
+        return "home";
     }
 
 }

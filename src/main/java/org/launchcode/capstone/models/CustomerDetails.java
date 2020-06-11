@@ -9,11 +9,11 @@ public class CustomerDetails extends AbstractEntity {
     @NotNull
     private String serviceAddress;
     @NotNull
-    private Double phone;
+    private String phone;
     @NotNull
     private String email;
 
-    public CustomerDetails(String serviceAddress, Double phone, String email) {
+    public CustomerDetails(String serviceAddress, String phone, String email) {
         this.serviceAddress = serviceAddress;
         this.phone = phone;
         this.email = email;
@@ -28,10 +28,10 @@ public class CustomerDetails extends AbstractEntity {
         this.serviceAddress = serviceAddress;
     }
 
-    public Double getPhone() {
+    public String getPhone() {
         return phone;
     }
-    public void setPhone(Double phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 

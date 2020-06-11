@@ -20,7 +20,7 @@ import java.util.Optional;
 public class AuthenticationController {
 
     @Autowired
-    private UserRepository userRepository;
+    UserRepository userRepository;
 
     private static final String userSessionKey = "user";
 
@@ -118,12 +118,12 @@ public class AuthenticationController {
 
         setUserInSession(request.getSession(), theUser);
 
-        return "redirect:";
+        return "redirect:/home";
     }
 
     @GetMapping("/logout")
     public String logout(HttpServletRequest request){
         request.getSession().invalidate();
-        return "redirect:/index";
+        return "redirect:/home";
     }
 }

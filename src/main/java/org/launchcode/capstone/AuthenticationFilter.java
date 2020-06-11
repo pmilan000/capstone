@@ -23,19 +23,17 @@ public class AuthenticationFilter extends HandlerInterceptorAdapter {
 
     //private static final List<String> agentWhiteList = Arrays.asList("/index", "/login", "/search", "/logout", "/css","/register");
     //private static final List<String> customerWhiteList = Arrays.asList("/index", "/login",  "/logout", "/css");
-    private static final List<String> whiteList = Arrays.asList("", "/customer", "/logout", "/css", "/login");
-
+    private static final List<String> whiteList = Arrays.asList("/home", "/customer", "/logout", "/css", "/login");
 
 
     private static boolean isWhiteListed(String path) {
-        for(String pathRoot : whiteList) {
+        for (String pathRoot : whiteList) {
             if (path.startsWith(pathRoot)) {
                 return true;
             }
         }
         return false;
     }
-
 
 
     @Override
@@ -50,19 +48,26 @@ public class AuthenticationFilter extends HandlerInterceptorAdapter {
         HttpSession session = request.getSession();
         User user = authenticationController.getUserFromSession(session);
 
-        String role = user.getRole();
-        if (request.getRequestURI() == "/register" && role != "admin"){
-            response.sendRedirect("/");
-            return false;
-        }
-
         // The user is logged in
         if (user != null) {
+            if ((request.getRequestURI().equals("/profile") || request.getRequestURI().equals("/edit")) && !user.getRole().equals("customer")) {
+                response.sendRedirect("/login");
+                return false;
+            }
+            if (request.getRequestURI().equals("/search")  && (!user.getRole().equals("agent") || !user.getRole().equals("admin"))) {
+                response.sendRedirect("/login");
+                return false;
+            }
+            if (request.getRequestURI().equals("/register") && !user.getRole().equals("admin")) {
+                response.sendRedirect("/login");
+                return false;
+            }
             return true;
         }
 
         response.sendRedirect("/login");
         return false;
     }
-
 }
+
+
