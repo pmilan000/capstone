@@ -21,9 +21,11 @@ public class AuthenticationFilter extends HandlerInterceptorAdapter {
     @Autowired
     AuthenticationController authenticationController;
 
-    //private static final List<String> adminWhiteList = Arrays.asList("/index", "/login", "/search", "/logout", "/css","/register");
-    //private static final List<String> agentWhiteList = Arrays.asList("/index", "/login", "/agentsearch", "/logout", "/css", "/register");
-    private static final List<String> whiteList = Arrays.asList("/", "/customer", "/logout", "/css", "/register", "/login");
+    //private static final List<String> agentWhiteList = Arrays.asList("/index", "/login", "/search", "/logout", "/css","/register");
+    //private static final List<String> customerWhiteList = Arrays.asList("/index", "/login",  "/logout", "/css");
+    private static final List<String> whiteList = Arrays.asList("", "/customer", "/logout", "/css", "/login");
+
+
 
     private static boolean isWhiteListed(String path) {
         for(String pathRoot : whiteList) {
@@ -34,16 +36,25 @@ public class AuthenticationFilter extends HandlerInterceptorAdapter {
         return false;
     }
 
+
+
     @Override
     public boolean preHandle(HttpServletRequest request,
                              HttpServletResponse response,
                              Object handler) throws IOException {
+
         if (isWhiteListed(request.getRequestURI())) {
             return true;
         }
 
         HttpSession session = request.getSession();
         User user = authenticationController.getUserFromSession(session);
+
+        String role = user.getRole();
+        if (request.getRequestURI() == "/register" && role != "admin"){
+            response.sendRedirect("/");
+            return false;
+        }
 
         // The user is logged in
         if (user != null) {

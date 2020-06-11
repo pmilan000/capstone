@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head">
+</head>
+<body class="container">
+<div th:replace="fragments :: page-header"></div>
+
+<h1>CUSTOMER PROFILE</h1>
+
+<form method="post">
+    <div class="form-group">
+        <label>Service Address
+            <input th:field="${customerDetails.serviceAddress}" class="form-control">
+        </label>
+        <p class="error" th:errors="${customerDetails.serviceAddress}"></p>
+    </div>
+    <div class="form-group">
+        <label>Contact Phone
+            <input th:field="${customerDetails.phone}" class="form-control">
+        </label>
+        <p class="error" th:errors="${customerDetails.phone}"></p>
+    </div>
+    <div class="form-group">
+        <label>Contact Email
+            <input th:field="${customerDetails.email}" class="form-control">
+        </label>
+        <p class="error" th:errors="${customerDetails.email}"></p>
+    </div>
+<!--    <div class="form-group">-->
+<!--        <label>Type-->
+<!--            <select th:field="${event.eventCategory}">-->
+<!--                <option th:each="eventCategory : ${categories}"-->
+<!--                        th:value="${eventCategory.id}"-->
+<!--                        th:text="${eventCategory.name}"-->
+<!--                ></option>-->
+<!--            </select>-->
+<!--            <p class="error" th:errors="${event.eventCategory}"></p>-->
+<!--        </label>-->
+<!--    </div>-->
+    <div class="form-group">
+        <input type="submit" value="Submit" class="btn btn-success">
+    </div>
+</form>
+</body>
+</html>

@@ -16,6 +16,8 @@ public class Customer extends AbstractEntity {
         this.lastName = lastName;
     }
 
+    public Customer(){}
+
     public String getFirstName() {
         return firstName;
     }
