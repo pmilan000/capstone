@@ -2,14 +2,18 @@ package org.launchcode.capstone.models;
 
 import javax.persistence.Entity;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 public class CustomerDetails extends AbstractEntity {
 
     @NotNull
     private String serviceAddress;
+
     @NotNull
+    @Size(min = 10, max = 16, message = "Phone must be between 10 and 16 characters")
     private String phone;
+
     @NotNull
     private String email;
 

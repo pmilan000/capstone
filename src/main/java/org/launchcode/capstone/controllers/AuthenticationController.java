@@ -44,7 +44,12 @@ public class AuthenticationController {
     }
 
     @GetMapping("/register")
-    public String displayRegistrationForm(Model model) {
+    public String displayRegistrationForm(HttpServletRequest request, Model model) {
+
+        HttpSession session = request.getSession();
+        User user = getUserFromSession(session);
+        model.addAttribute("isloggedIn", (user != null));
+        model.addAttribute("username", user.getUsername());
         model.addAttribute(new RegisterFormDTO());
         model.addAttribute("title", "Register");
         return "register";

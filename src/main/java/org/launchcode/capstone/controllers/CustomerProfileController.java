@@ -2,6 +2,7 @@ package org.launchcode.capstone.controllers;
 
 import org.launchcode.capstone.models.Customer;
 import org.launchcode.capstone.models.CustomerDetails;
+import org.launchcode.capstone.models.User;
 import org.launchcode.capstone.models.data.CustomerDetailsRepository;
 import org.launchcode.capstone.models.data.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,10 +13,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 @Controller
 public class CustomerProfileController {
+
+    @Autowired
+    AuthenticationController authenticationController;
 
     @Autowired
     private CustomerRepository customerRepository;
@@ -24,7 +30,12 @@ public class CustomerProfileController {
     private CustomerDetailsRepository customerDetailsRepository;
 
     @GetMapping("/profile")
-    public String renderCreateDetailsForm(Model model) {
+    public String renderCreateDetailsForm(HttpServletRequest request, Model model) {
+
+        HttpSession session = request.getSession();
+        User user = authenticationController.getUserFromSession(session);
+        model.addAttribute("isloggedIn", (user != null));
+        model.addAttribute("username", user.getUsername());
         model.addAttribute("title", "Edit Profile");
         model.addAttribute(new CustomerDetails());
         return "profile";
@@ -36,6 +47,7 @@ public class CustomerProfileController {
             model.addAttribute("title", "Customer profile");
             model.addAttribute("serviceAddress", customerDetails.getServiceAddress());
             model.addAttribute("phone", customerDetails.getPhone());
+            model.addAttribute("email", customerDetails.getEmail());
             return "profile";
         }
 
@@ -44,7 +56,12 @@ public class CustomerProfileController {
     }
 
     @GetMapping("/edit")
-    public String displayEditProfile(Model model) {
+    public String displayEditProfile(HttpServletRequest request, Model model) {
+
+        HttpSession session = request.getSession();
+        User user = authenticationController.getUserFromSession(session);
+        model.addAttribute("isloggedIn", (user != null));
+        model.addAttribute("username", user.getUsername());
         model.addAttribute("title", "Edit Profile");
         model.addAttribute(new CustomerDetails());
         model.addAttribute("customers", customerRepository.findAll());
