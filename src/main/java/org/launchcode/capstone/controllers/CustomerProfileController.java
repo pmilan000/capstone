@@ -52,7 +52,7 @@ public class CustomerProfileController {
         }
 
         customerDetailsRepository.save(customerDetails);
-        return "redirect:";
+        return "redirect:/profile";
     }
 
     @GetMapping("/edit")
@@ -80,7 +80,7 @@ public class CustomerProfileController {
         }
 
         customerDetailsRepository.save(newCustomerDetails);
-        return "redirect:";
+        return "redirect:/profile";
     }
 
 }
